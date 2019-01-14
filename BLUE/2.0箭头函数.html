@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>箭头函数</title>
+    <script>
+        window.onload=()=>{
+            /*
+                箭头函数
+                1. 就是一个函数的简写方式
+                2. 当函数只有一个参数,可以省略`()`
+                3. 当函数只有一个retrun,可以省略`{}`
+            */
+//以前的写法
+            // function add(a){
+            //     alert(a);
+            // }
+
+//箭头函数写法 : 把以前的 function 去了,在 () 和 {} 之间加个 => 
+            // add=a=>alert(a);
+            // add(2);  //2
+
+// 箭头函数练习
+            // {
+            //     ji=(a,b)=>a*b;
+            //     let res = ji(2,5);
+            //     alert(res);  //10
+            // }
+
+//箭头函数练习
+            // add2=(a,b)=>alert(a+b);
+            // add2(2,4); //6
+
+//数组排序箭头函数
+            {
+                let arr = [1,55,2,34,49,5,89,101];
+                //因为函数体只有一条语句.所以省略了花括号和return
+                arr.sort((a,b)=>a-b);
+                // alert(arr);
+            }
+
+
+//排序 2
+            {
+                let arr = [1,50,66,34,2,101];
+                arr.sort((a,b)=>a-b);
+                // alert(arr);
+            }
+
+            let show = (a,b)=>a+6+b;
+            let re = show(1,8);
+            console.log(re);
+
+        }/*window.onload*/
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

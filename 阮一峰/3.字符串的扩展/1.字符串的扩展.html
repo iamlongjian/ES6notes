@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符串的扩展</title>
+    <script>
+        window.onload=()=>{
+            /*字符串的遍历接口*/
+//1. ES6为字符串添加了遍历接口,使得字符串可以被for...of循环遍历
+            // for(let codePoint of 'foo'){
+            //     console.log(codePoint); //f o o 
+            // }
+//2. 该方法可以正确的实别大于0×FFFF的码点,for循环会认为包含两个字符,而for...of循环会正确实别为一个字符
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+            /*新方法
+            1. includes():布尔值，表示是否找到了参数字符串
+            2. stratsWith()：布尔值，表示参数字符串是否在原字符串的头部
+            3. endsWith()：布尔值,表示参数字符串是否在原字符串的尾部
+            */
+            //传统上，JS只提供了indexOf()方法,可以用来确定一个字符串是否包含在另一个字符串中。
+
+//includes()
+            // let url = "https:baidu.com";
+            // if(url.includes('baidu')){
+            //     alert("百度");
+            // }else{
+            //     alert('没找到');
+            // }
+
+
+//startsWith()
+            // let web = "agit://";
+            // if(web.startsWith("http://")){
+            //     alert('普通网址');
+            // }else if(web.startsWith("https://")){
+            //     alert('加密网址');
+            // }else if(web.startsWith("git://")){
+            //     alert('git网址');
+            // }else{
+            //     alert('其他网址');
+            // }
+
+//endsWith()
+            // let file = "a.png";
+            // if(file.endsWith('txt')){
+            //     alert('这是文本文件');
+            // }else if(file.endsWith('exe')){
+            //     alert('这是应用程序');
+            // }else if(file.endsWith('png')){
+            //     alert('这是PNG图');
+            // }else{
+            //     alert('其他类型');
+            // }
+
+/*这三个方法都支持第二个参数,表示开始搜索的位置*/
+            // let str = "hello world!";
+            // str.includes("hello",5); //false
+            // str.startsWith("hello",5); //false
+            // str.endsWith("hello",5); //true
+/*注意,endsWith的行为和其他两个方法有所不同,endsWith表示搜索前n个字符,而其他两个表示从n开始直到字符串末尾*/
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+// repeat() 重复字符串
+                // alert('hello'.repeat(2)); //"hellohello"
+                // alert('hello'.repeat(2.9)); //"hellohello" //如果是小数,则向下取整
+                // alert('hello'.repeat('3')); //"hellohellohello"  //如果是字符串,则转换为数字,NaN转为数字为0
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+// padStart(),padEnd() 用于补全字符串
+                // alert('x'.padStart(3,"ab"));  //abx
+                // alert('x'.padStart(6,"ab"));  //ababax
+                // alert('x'.padEnd(3,"ab"));  //xab
+                // alert('x'.padEnd(6,"ab"));  //xababa
+
+                //常见用途:补全指定位数
+                // 'x'.padStart(10,"0"); //"000000000x"
+                //常见用途:指定字符串格式
+                // '12'.padStart(10, 'YYYY-MM-DD') // "YYYY-MM-12"
+                // '09-12'.padStart(10, 'YYYY-MM-DD') // "YYYY-09-12"
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+
+            var name = "longer";
+            var sex = "男"; 
+            tag`hello,my name is${name},i am a${sex}`;
+// 两个以上参数:
+// 第一个参数:是一个数组,成员是模板字符串那些没有变量替换的部分
+// 后面的参数: 字符串模板被替换后的值
+            function tag(a,b,c){
+                console.log(a,b,c) //["hello,my name is",",i am a",""],longer,男
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

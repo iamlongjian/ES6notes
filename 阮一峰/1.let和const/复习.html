@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let,const</title>
+    <script>
+
+//不能重复声明
+            // let a = 2;
+            // let a =3; //报错 //不能重复声明
+
+//可以修改
+            // let a = 3;
+            // a = 5;
+            // alert(a);  //5 //可以修改
+// 块级作用域
+            // if(true){
+            //     let a = 2;
+            // }
+            // alert(a);  //a is not defined
+
+// 不存在变量提升
+            // {
+            //     alert(a);
+            //     let a = 2; //a is not defined
+            // }
+            
+// var 存在变量提升
+                // {
+                //     alert(a);  //undefined
+                //     var a = 5;
+                // }
+//函数声明存在函数名提升
+                // {
+                // show();
+                //     function show(){
+                //         console.log("iam show");
+                //     }
+                // }
+
+// TDZ
+            // var a = 2;
+            // {
+            //     console.log(a);  // a is not defined //TDZ
+            //     let a = 2;
+            // }
+// for循环的两个作用域
+            // for (let i=0;i<3;i++){
+            //     let i = "cici";
+            //     console.log(i); // for循环的两个作用域
+            // }
+
+
+            /*const
+            1. 设置常量
+            2. 不能改变值(内存地址)
+            3. 不可重复声明
+            4. 块级作用域
+            5. 在声明时,就要赋值
+            */
+//设置常量
+            // const a = 1;
+
+//不能改变值
+            /*普通数据类型*/
+            // a = 23;
+            // alert(a);  //报错
+
+            /*引用数据类型*/
+            //可以改变其属性,但是不能改变其地址
+            // const b =  {};
+            // b.name = "longer";
+            // console.log(b.name);  //longer //可以改变其属性
+            
+            // b = {}; //报错 //不能改变其地址
+            
+
+// 不可重复声明
+            // const a = 23;  //报错
+    
+//块级作用域
+            // {
+            //     const a = 33;
+            // }
+            // alert(a);  //a is not defined
+
+//声明同时要赋值
+            // const a ; //报错
+
+//没有变量提升
+            // {   
+            //     alert(a); //a is not defined
+            //     const a = 2;
+            // }
+
+// let,const声明的量不再是window的属性
+            var a = 2;
+            console.log(window.a);  //2
+
+            let b = 1;
+            console.log(window.b); //undefined
+
+            const c =3;
+            console.log(window.c);  //undefined
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

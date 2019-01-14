@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>filter()</title>
+    <script>
+        window.onload=()=>{
+            /*filter() --- 过滤 --- 出来一部分*/
+            let arr = [12,59,36,66,84];
+
+            //求出能被3整除的
+            alert(arr.filter(function(item,index,arr){
+                return item%3 == 0;
+            }));
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

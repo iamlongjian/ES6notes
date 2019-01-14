@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数值的扩展</title>
+    <script>
+        window.onload=()=>{
+            /*数值的扩展*/
+//以下两个方法只对数值有效
+//---------------------------------------------------
+// 1. Number.isNaN() 在number对象上,添加了一个新方法,表示是否为NaN，返回一个布尔值
+    Number.isNaN(123); //false
+    Number.isNaN(NaN); //true
+//---------------------------------------------------
+//2. Number.isFinite() 表示是否为无穷大/小，有限数值返回true,无限返回false
+    Number.isFinite(-Infinity); //false 
+    Number.isFinite(123);
+//---------------------------------------------------
+/*
+    - 这两个方法和全局的parseInt()和parseFloat()方法一致。这样做的目的是为了减少全局性
+    方法,将JS语言逐渐变得模块化。
+*/
+// Number.parseInt(),Number.parseFloat()
+    Number.parseInt("3.14px"); //3
+    Number.parseFloat("3.14px");  //3.14
+//---------------------------------------------------
+//Number.isInteger() 返回一个布尔值，表示一个数值是否为整数
+//因为在JS内部,整数其实是用小数点储存的,例如：3 === 3.00000000
+    Number.isInteger("3"); //false //证明不会做类型转换
+    Number.isInteger(3); //true //是一个整数
+    Number.isInteger(3.14); //false //不是整数,所以返回false
+    Number.isInteger(3.00000); //true //在JS内部,整数是以小数形式存在的
+//---------------------------------------------------
+//---------------------------------------------------
+/*Es6在Math对象上新增了17个与数学相关的方法,所有的方法都是静态方法,只能在Math对象上调用*/
+//1. Math.trunc()，该方法去除数字的小数部分,返回其整数部分。对于非数值,会有类型转换，
+    Math.trunc(3.456)   //3
+    Math.trunc(-3.456)  //-3
+    Math.trunc('3.14'); //3
+    Math.trunc('-3.14'); //-3
+    Math.trunc('foo'); //NaN
+//2. Math.sign()，该方法用于判断一个属到底是正数,负数,还是零。对于非数值,会有类型转换，
+    Math.sign(3.456)   //1
+    Math.sign(-3.456)  //-1
+    Math.sign('0'); //0
+    Math.sign('foo'); //NaN
+//2. Math.cbrt()，该方法用于计算一个数的立方根。对于非数值,会有类型转换，
+    Math.cbrt(-1) // -1
+    Math.cbrt(0)  // 0
+    Math.cbrt(1)  // 1
+    Math.cbrt(2)  // 1.2599210498948734
+    Math.cbrt("8")  // 2
+    Math.cbrt('hello') // NaN
+//---------------------------------------------------
+//---------------------------------------------------
+/*ES6新增的指数运算符*/
+// ** ，该运算符是右结合。
+2 ** 3 ; //9
+2 ** 3 ** 2; //512 //因为是右结合，相当于 2**(3**2);
+
+
+
+
+
+
+
+
+
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

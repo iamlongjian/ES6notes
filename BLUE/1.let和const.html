@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let和const</title>
+    <script>
+        window.onload=function(){
+/*let:
+1. 声明变量
+2. 块级作用域
+3. TDZ
+4. 无变量名提升
+5. 不可重复声明
+6. 可以修改            
+7. 注意:for循环中,循环变量设置 和 循环体内部 是两个不同的作用域
+*/
+//1.声明变量
+            // let a = 12;
+            // alert(a); //12  
+            
+//2.块级作用域外面无法使用该变量
+            // {
+            //     let b = 2;
+            // }
+            // alert(b); // b is not defined 
+//3.TDZ
+            // var tem = 1;
+            // {
+            //     alert(tem);  //tem is not defined 
+            //     let tem = 2;
+            // }
+//4. 无变量名提升
+            // {
+            //     alert(b);  // b is not defined  
+            //     let b = 2;
+            // }
+//5.不能重复声明            
+            // let a = 12;
+            // alert(a); //报错   // 无法重复声明同一个变量
+            // let a = 13;  
+//6.可以修改
+            // let a = 12;
+            // a = 13;
+            // alert(a); //13 
+//7.for循环中,循环变量设置部分和循环体是两个不同的作用域
+            // for(let i=0;i<3;i++){
+            //     let i="abc";
+            //     console.log(i);  //"abc" "abc" "abc"
+            // }
+
+/*const
+1. 块作用域
+2. 设置常量的时候要赋值
+3. 不可改变
+4. 不可重复声明
+*/
+//1.块作用域
+            // {
+            //     const a = 4;
+            // }
+            // alert(a); //a is not defined
+
+//2. 设置常量的时候要赋值
+            // {
+            //     const a;  //Missing initializer in const declaration //设置常量的时候要复制
+            // }
+
+//3. 不可改变
+            // {
+                 // const a = 1;
+                 // a = 2; // Assignment to constant variable. //常量不可以修改
+
+                 // const a = [];
+                 // a[0] = 123;
+                 // alert(a[0]);  //如果是引用数据类型，则可以修改其属性或方法
+            // }
+//4. 不可重复声明
+                
+                {
+                    const  a = 2;
+                    const  a = 3; //Identifier 'a' has already been declared //不允许重复声明
+                     
+                }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

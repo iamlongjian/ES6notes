@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>结构赋值</title>
+    <script>
+        window.onload=()=>{
+            /*解构赋值
+            */
+//    **例一**
+        //    let [foo,[[bang=20],zi]] = [20,[[],99]];
+        //    console.log(foo,bang,zi); //20 20(默认值) 99
+
+// **例二**
+            // let [first,second,third] = [,,3];
+            // console.log(first,second,third); //undefined,undifined,3
+            //设置默认值
+            // let [first=1,second=2,third] = [,,3];
+            // console.log(first,second,third); //1,2,3
+
+// **例三**
+        //...args(包揽剩余参数,摊开数组)
+            // let [a,b,...c] = [1,2,3,4,6];
+            // console.log(`"a:"${a},"b:"${b},"c:"${c}`);   //"a:"1,"b:"2,"c:"3,4,6
+            //上面代码中 C包揽了所有剩余参数
+        // 摊开数组
+            // let arr = [1,2,3];
+            // show=(a,b,c)=>{
+            //     console.log(a+b+c);
+            // };
+            // show(...arr); //6
+            // // 相当于
+            // show(1,2,3);
+// 如果解构不成功,变量的值就为undefined
+            // let [name,sex,age] = ["longer",,19];
+            // console.log(name,sex,age);  // longer undefined 19
+
+// 不完全解构,会成功。
+            // let [a,b,c]=[1,2];
+            // a; //1
+            // b; //2
+
+            // let [a,[b],c]=[1,[2,3],4];
+            // a; //1
+            // b; //2
+            // c; //4
+// 默认值
+            // let [a=1,b=3] = [];
+            // console.log(a,b);  //1,3
+// 允许设置默认值为之前的变量，但是该变量必须已声明
+            // let [a=2,b=a] = [];
+            // console.log(a,b);  //2,2    
+
+            // let[a=b,b=2] = [];
+            // console.log(a,b);  // b is not defined
+
+            // **注意:ES6中使用严格等于(===)**
+            // 所以,当一个数组成员严格等于undefined的时候,默认值才会生效
+            // let [a=10,b=20] = [1,undefined];
+            // console.log(a,b);  //1,20  //因为b严格等于`undefined`,所以默认值生效.
+
+/*对象的解构赋值
+- 与数组不同之处在于,数组解构赋值需要按照顺序排好,而对象解构赋值是根据对象名来赋值.
+- 变量名称必须和属性名称同名,才能取到正确的值
+*/
+            // let {a,b} = {b:1,a:2};
+            // console.log(a,b);  //2,1 //按照变量名称来赋值
+
+/*对象的解构赋值:如果非要写成变量名和属性不同名,可以写成 {模式:变量} = {模式:值}
+也就是说,变量的 : 左边其实是匹配模式,真正赋值的是 : 右边的变量
+*/
+// 实际上对象解构赋值就是 `let{foo:foo,bar:bar} = {foo:123,bar:456}`的简写
+            // let {foo:foo2} = {foo:20};
+            // console.log(foo2); //20
+
+// let {a:t,b:c} = {a:1,b:2};  //真正赋值的是t,c
+// console.log(t,c);
+
+
+//对象解构赋值
+        // const obj = {
+        //     p:{
+        //         an:{
+        //             line:2,
+        //             count:5
+        //         }
+        //     }
+        // };
+
+        //冒号前的是匹配模式
+        // let {p,p:{an},p:{an:{line}}}  = obj;     //{p:{an:{line:2,count:5}}};
+        // console.log(p);
+        // console.log(an);
+        // console.log(line);
+
+//对象解构赋值也可以设置默认值
+        // let {x=2,y=9} = {x:1,y:null};
+        // console.log(x,y); //1,null
+
+// 只有当值严格等于undefined的时,默认值才会生效
+        // let {x=2,y=9} = {x:1,y:undefined};
+        // console.log(x,y); //1,9
+
+// 如果要给一个已经声明了的变量解构赋值,必须非常小心
+/*如果直接把大括号写在行首,JS会把{}解析成一个代码块,从而发生语法错误
+       解决办法: 在解构赋值语句放在()内,就可以正确执行     
+*/
+        // let x;
+        // ({x} = {x:1});
+        // console.log(x);  //1
+
+// 使用解构赋值可以很方便的将现有对象的方法,赋值到某个变量,使用起来会方便很多
+        // let {floor,random,round} = Math;
+        // for(let i = 0;i<10;i++){
+        //     console.log(round(random()*3+12))
+        // }
+
+//  字符串也可以解构赋值
+            //此时,字符串被转换成了一个类似数组的对象
+            // let [a,b,c,d,e] = "hello";
+            // a;//h
+            // b;//e
+            // c;//l
+            // d;//l
+            // e;//o
+            //字符串也有length属性,因此还可以对这个属性进行解构
+            // let {length:len} = "hello";
+            // console.log(len);  //5
+// 数值和布尔值都可以进行解构赋值
+            // let {toString:s} = 123;
+            // s === Number.prototype.toString;
+            // let {toString:s} = true;
+            // s === Boolean.prototype.toString;
+/*
+因此得出结论,解构赋值的规则为:只要等号右边的值不是对象或数组,就先将其转换为对象.由于undefined和null无法
+转换为对象,所以对他们进行解构赋值就会报错
+*/
+            // 因为null,undefined不能转换为对象,所以会报错
+            // let {to} = undefined;
+            // ler {so} = null;
+
+//不能使用 "()"的情况
+//1. 变量声明语句
+// let [(a)] = [1];
+// let {x:(a)} = {x:1};
+//2. 函数参数
+//3. 赋值语句模式
+
+//可以使用圆括号的情况
+//只有一种:赋值语句的非模式部分,可以使用圆括号
+// [(a)] = [1];
+// ({p:(d)} = {p:3});  //d:3
+// [(p.d)] = [3];
+
+
+
+//解构赋值的用途
+//1 :交换变量的值
+        // let x = 1;
+        // let y = 2;
+        // [x,y] = [y,x]; 
+        // console.log(x); //2 
+        // console.log(y); //1
+//上面代码交换x和y的值,简洁易读.
+
+//2.从函数返回多个值
+//             function example(){
+//                 return [1,2,3];
+//             }
+//             let [a,b,c] = example();
+//             console.log(a,b,c);  //1,2,3
+
+//             function exa(){
+//                 return{
+//                     name:'lj',
+//                     sex:'男'                    
+//                 }
+//             }
+//             let {name,sex} = exa();
+//             console.log(name,sex);  //lj 男
+
+// //3. 函数参数的定义
+// //解构赋值可以方便的将一组参数和变量名对应起来
+//             function show([a,b,c]){
+//                 console.log(a+b+c);
+//             }
+//             show([5,12,1]); //18
+
+//             //参数是一组无次序的值
+//             function show2({x,y,z}){
+//                 console.log(x+y-z);
+//             }
+//             show2({x:1,z:9,y:10}); //2
+
+
+//4. 提取JSON数据,尤其有用
+            let jsonData = {
+                id:12,
+                name:"json",
+                status:"200",
+                data:[1,20]
+            };
+            let {id,name,status,data:[number]} = jsonData;
+            console.log(id,name,status,number); // 12 "json" "200" 1
+
+
+
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

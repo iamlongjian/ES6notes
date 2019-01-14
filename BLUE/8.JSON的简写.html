@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON</title>
+    <script>
+        window.onload=function(){
+            /*JSON的两个方法*/
+
+//JSON的标准格式
+// 1. 只能用双引号
+// 2. 所有的key必须用引号包起来
+
+// '{"a":"abc","b":12}'; √
+// '{a:"abc",b:12}'; ×
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+//1. JSON.stringify();  //将JSON对象转换为字符串
+//encodeURIComponent() 将字符串作为URI组件进行编码,参数为一个字符串。
+            // let json = {a:1,b:2};
+            // let str = "http://baidu.com/path/user?"+encodeURIComponent(JSON.stringify(json));
+            // alert(str);
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+//2. JSON.parse() //将对象转换为json格式,注意对象的格式。
+            // let str = '{"a":"abc","b":12}';
+            // let json = JSON.parse(str);
+            // console.log(json);
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+//JSON的简写
+//1. key和value一样的时候,可以省略value
+// let a = 1;
+// let b = 2 ;
+// let json={a,b};
+// let c  = JSON.stringify(json);
+// console.log(c);
+
+//2. 方法可以简写
+// let json = {
+//     a:1,
+//     show(){          //原来的格式:show:function(){}
+//         alert(this.a);
+//     }
+// };
+// json.show();
+
+
+
+
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

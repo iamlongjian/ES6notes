@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符串</title>
+    <script>
+    window.onload=()=>{
+        /*字符串的两个新方法
+        1. startsWith---以...开头
+        2. endsWith---以...结尾
+        */
+
+        /*
+            字符串模板
+            写法:`${变量}`
+            i: 可以直接把变量放到字符串里面,进行字符串的拼接    ${变量}
+            ii: 可以折行
+        */
+
+
+// startsWith(),可用于判断网址
+    // let str = "git://baidu.com";
+    // if(str.startsWith("http://")){
+    //     alert("普通网址");
+    // }else if(str.startsWith("https://")){
+    //     alert("加密网址");
+    // }else if(str.startsWith("git://")){
+    //     alert("git网址");
+    // }else if(str.startsWith("svn://")){
+    //     alert("svn网址");
+    // }else{
+    //     alert("其他网址");
+    // }
+
+// endsWith(),可用于判断文件后缀
+    // let str = "1.txt";
+    // if(str.endsWith(".txt")){
+    //     alert("文本文件");
+    // }else if (str.endsWith(".png")){
+    //     alert("PNG图片");
+    // }else if (str.endsWith(".jpg")){
+    //     alert("JPG图片");
+    // }else{
+    //     alert("其他类型");
+    // }
+
+//字符串模板
+        //之前写法
+        // let str = 'content'||"content";
+        // //新增写法
+        // let str2 = ``; 
+
+        // let str3 = "字符串";
+        // let str4 = `我是${str3},嘻嘻！`; //字符串拼接 , 还可以换行
+        // alert(str4);
+
+        let content = '你好,我一定会成功的！';
+        let title = '充满回忆';
+        let str =`<div>
+            <h1>${title}</h1>
+            <p>${content}</p>
+            </div>`;
+        alert(str);
+
+
+       
+       
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

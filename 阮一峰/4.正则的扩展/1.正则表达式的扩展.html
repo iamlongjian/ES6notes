@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则表达式的扩展</title>
+    <script>
+        window.onload=()=>{
+/*正则表达式的扩展*/
+//正则的两个常用方法:
+// RegExp.prototype.test();
+//用于测试某个字符串是否如何正则表达式规范，返回一个布尔值,匹配则返回true,不匹配则返回false
+// /abc/.test("abc");  //true
+//--------------------------------------------------------------------------------------
+// RegExp.prototype.exec();
+// 返回一个数组,表示字符串匹配的结果,
+// const str = '_x_x';
+// console.log(/_(x)/.exec(str)); //[_x],[x] //第一个返回整个正则匹配,第二个是括号里的匹配
+
+ //可以配合g修饰符和while循环,一次输出所有匹配的
+// var reg = /a/g;
+// var str = 'abc_abc_abc';
+// while(true) {
+//   var match = reg.exec(str);
+//   if (!match) break;
+//   console.log('#' + match.index + ':' + match[0]);
+// }
+
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//ES5中,RegExp对象的参数可以有两种情况
+//1.
+            // let reg = new RegExp('xyz','ig');
+
+//2.        上下两个表达式都等价于:let reg = /xyz/ig;
+
+            // let reg = new RegExp(/xyz/ig);
+
+            // 但是ES5不允许第一个参数为正则的时候,出现第二个参数
+            //ES6改变了这种行为,如果第一个参数为正则,那么第二个参数指定的修饰符会覆盖正则的修饰符
+            // let reg = new RegExp(/xyz/g,'i');
+            // console.log(reg.test('XYZ'));
+
+            // let str = 'hello,world!';
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//新增 u 修饰符,该修饰符可以正确实别大于0×FFFF码点的字符
+            // let str = "𠮷";
+            // for(let i=0;i<str.length;i++){
+            //     // console.log(i); //0,1 //证明这个码点大于0×FFFF
+            // }
+            // console.log(/^.$/.test(str)); //false
+            // console.log(/^.$/u.test(str)); //true //加了u修饰符,就可以正确实别unicode码点了
+
+//新增了RegExp.prototype.unicode属性
+//检测该正则表达式是否设置了u修饰符
+            // const r1 = /hello/;
+            // const r2 = /hello/u;
+            
+            // console.log(r1.unicode); //false
+            // console.log(r2.unicode); //true
+
+//新增了y修饰符,y修饰符与g修饰符类似，也是全局匹配。后一次匹配都从上一次匹配成功的下一个位置开始,不同之处在于,g修饰符只要
+// 剩余位置存在匹配就可,而y修饰符确保匹配必须从剩余的第一个位置开始,这就是粘连的意义。
+            
+            // const r = /a/yg;
+            // const r1 = /a/g;
+            
+            // console.log("aa1a".match(r));  // [a],[a]   //y修饰符,剩余中如果第一个位置开始匹配就输出
+            // console.log("aa1a".match(r1)); // [a],[a],[a] //只要剩余中有符合匹配就输出
+
+            // const r2 = /a/yg;
+            // console.log('aaxa'.replace(r2,"-")); //--xa //y修饰符,表示粘连
+
+        //再match()单使用一个y修饰符只会返回一个结果,需要配合g修饰符,才会返回所有结果
+
+//新增了RegExp.prototype.sticky属性
+// 用于判断正则是否加了y修饰符
+
+//RegExp.portotype.flag 输出所有的修饰符
+
+
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//使用正则的四个字符串方法
+/*
+1. str.match(); 匹配成功返回一个数组,匹配失败返回nul
+2. str.replace(reg,str2);两个参数,第一个为正则表达式,第二个为替换的内容,返回一个新字符串
+3. str.search();匹配成功则返回第一次出现的位置
+4. str.split();接收两个参数,第一个为正则,第二个为分割之后的个数
+*/
+// 1. match()
+//             let str = '123abcdaefg';
+//             console.log(str.match(/x/)); //null
+//             console.log(str.match(/a/)); //[a] //返回一个数组
+//             console.log(str.match(/a/g)); //[a,a] //返回一个数组
+// // 2. replace()
+//             console.log(str.replace(/a/,'4')); //'1234bcdaefg'
+//             console.log(str.replace(/a/g,'4')); //'1234bcd4efg'
+// // 3.search()
+//             console.log(str.search(/a/));//3 //返回第一次出现的位置
+//             console.log(str.search(/a/g));//3 //返回第一次出现的位置,指定全局也是无效的
+// // 4. split()
+//             console.log(str.split('a')); // [ "123", "bcd", "efg" ] //根据'a'来分割字符串
+//             console.log(str.split(/a/,2)); // [ "123", "bcd" ] //根据'a'来分割字符串 //第二个参数表示最大成员数
+
+//具名匹配 ?<>，便于阅读也便于引用  只有谷歌浏览器支持！！！
+// 1. ?<name>
+// 2. 使用exec方法
+// 3. groups.name , 就可以取出匹配的结果
+var reg = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+var result = reg.exec("1999-01-25");
+var year = result.groups.year;
+var month = result.groups.month;
+var day = result.groups.day;
+alert(`${year}年${month}月${day}日`)
+
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

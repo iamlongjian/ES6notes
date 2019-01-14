@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数的参数扩展</title>
+    <script>
+        window.onload=function(){
+            /*
+                1.参数的扩展/数组展开
+                2.默认参数
+                直接在参数后面赋值即可
+            */
+
+//1.参数扩展,数组展开
+/*
+            1.收集剩余参数
+            function show(a,b,...args){};
+            2.展开数组
+            let arr = [1,2,3];
+            //展开数组
+            ...arr;
+               ||
+            1,2,3;
+*/
+/*`...`的作用*/
+//收集剩余参数
+
+//展开数组
+        // let arr = [1,2,3];
+        // function show(a,b,c){
+        //     // alert(a+b+c);
+        // }
+        // show(...arr); //6 //数组展开成了 1,2,3
+        
+        
+//利用解构赋值
+        // let arr = [1,2,3];
+        // function show([a,b,c]){
+        //     alert(a+b+c);
+        // }
+        // show(arr); //6 //数组展开成了 1,2,3
+
+//展开数组
+        // let arr1 = [1,2,3];
+        // let arr2 = [4,5,6];
+        // let arr3 = [...arr1,...arr2];
+        //         //上下两条语句全等 ，但是不等于 let arr3 = [arr1,arr2];
+        // let arr3 = [1,2,3,4,5,6];
+        // alert(arr3); //1,2,3,4,5,6
+
+//注意:不能赋值
+        // let a;
+        // let arr = [1,2,3];
+        // a = ...arr;  //直接报错;
+
+//`...`两种用法组合
+        // let show=(...args)=>{
+        //     fn(...args)
+        // };
+        // let fn=(a,b)=>{
+        //     // alert(a+b);
+        // };
+        // show(1,2);
+
+        
+        let show = (...arr)=>fn(...arr);
+        let fn=(a,b)=>alert(a*b);
+        show(1,2);
+
+        
+/*
+    默认参数
+*/
+show=(a=10,b=20,c=30)=>{
+    console.log(a,b,c);
+};
+show(); //10,20,30 //默认参数的方法 直接赋值即可
+
+
+
+
+}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

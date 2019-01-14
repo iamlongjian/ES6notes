@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组</title>
+    <script>
+        window.onload=()=>{
+            /*数组: 
+                1. map  映射---一个对一个
+                2. reduce 汇总---多个对一个
+                3. filter 过滤
+                4. foreach 遍历
+            */
+// map映射
+//三个参数:item,index,arr
+            // let score = [19,61,89,20,99];
+            // let result = score.map(item=>item>60?"YES":"NO");
+            // alert(score);
+            // alert(result);
+
+            // let arr = [20,30,50,100];
+            // let result = arr.map(function(item,index,arr){
+            //     return item>=50?"OK":"NO";
+            // })
+            // console.log(result); //
+// reduce 汇总
+// 三个参数:reduce(tmp,item,index)
+/*
+            tmp:最终相加结果
+            item:每个成员
+            index:下标(从1开始)
+*/
+            let arr = [1,20,30,50,9];
+            let result = arr.reduce(function(tmp,item,index){
+                return index;
+            });
+            console.log(result); //110
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

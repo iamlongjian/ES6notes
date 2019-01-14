@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象</title>
+    <script>
+        window.onload=()=>{
+//ES5继承写法,类和构造函数不分
+            //类,构造函数
+            function Cat(name,age){
+                this.name = name;
+                this.age = age;
+            }
+            Cat.prototype.showName = function(){
+                alert(this.name);
+            }
+            Cat.prototype.showAge = function(){
+                alert(this.age);
+            }
+
+            var c1 = new Cat("cici",1);
+            
+            function Person(name,age,sex){
+                Cat.call(this,name,age);
+                this.sex = sex;
+            }
+            Person.prototype = new Cat();
+            Person.prototype.constructor = Person;
+            Person.prototype.showSex = function(){
+                alert(this.sex);
+            }
+            var p1 = new Person("papi",20,"女");
+            // p1.showName(); //papi
+            // p1.showAge(); //20
+            // p1.showSex(); //女
+
+// ES6中的class写法
+            class User{
+                //构造器
+                constructor(name,pass){
+                    this.name = name;
+                    this.pass = pass;
+                }
+                //方法:没有function,直接写
+                showName(){
+                    alert(this.name);
+                }
+                showPass(){
+                    alert(this.pass);
+                }
+            }
+
+            var s2 = new User('longer',123456);
+            // s2.showName(); //longer
+            // s2.showPass(); //123456
+
+
+//ES6的继承
+            //Vipuser 扩展自 User
+            class VipUser extends User {
+                constructor(name,pass,level){
+                    super(name,pass);
+                    this.level = level;
+                }
+                showLevel(){
+                    alert(this.level)
+                }
+            }
+
+            var v1 = new VipUser('cici',123,456);
+            v1.showName(); //cici
+            v1.showPass(); //123
+            v1.showLevel(); //456
+            
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

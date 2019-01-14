@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let</title>
+    <script>
+        window.onload=function(){
+            var bs = document.getElementsByTagName("input");
+// let:
+//使用闭包解决作用域的问题
+            //     for(var i=0;i<bs.length;i++){
+            //     (function (i){
+            //         bs[i].onclick=function(){
+            //             alert(i);
+            //         }
+            //     })(i)
+            // }
+
+//在ES6中,直接使用let声明变量即可
+            // for(let j=0;j<bs.length;j++){
+            //     bs[j].onclick=function(){
+            //         alert(j);
+            //     }
+            // }
+
+            {
+                // let a = 5;
+                
+                // let a = 6; //不能重复声明
+                // a=6; //可以修改
+                // alert(a); //6 //let声明的是变量，可以被改变。
+            }
+            // alert(a); //块级作用域
+
+// for循环设置循环的部分是一个作用域,循环体又是一个作用域
+            for(let i=0;i<3;i++){
+                let i = "abc";
+                console.log(i);  //输出三个 "abc"
+            }
+// 不存在变量提升      
+            {
+                // alert(a);  //a is not defined //let 不存在变量提升
+                // let a = 6;
+            }
+            {
+                // alert(j);  //undefined //var 存在变量提升
+                // var j = 1;
+            }
+// 暂时性死区
+            // var temp = 1;
+            // {
+            //     // alert(temp);  //报错 //因为在同一个代码块内,尽管区块外声明了全局变量,但凡是使用let,就会形成一个暂时性死区。
+            //     let temp = 3;
+            //     alert(temp); //3
+            // }
+
+            //有些TDZ不太容易被发现
+            // function bar(x=y,y=2){
+            //     return [x,y];
+            // }
+            // bar();  //y is not defined
+            
+
+
+            
+           
+// const:
+        //    {
+        //     const a = 5;
+
+            // const a = 6;  //不能重复声明
+            // a = 6;  //不能被修改
+
+            // alert(a);  //Assignment to constant variable. //const声明的是常量,不能被改变
+        //    }
+        //    alert(a);  //a is not defined  //块级i作用于
+
+        
+//const必须声明时赋值
+            // const a;  // 报错
+                    
+            
+
+            // var a = 2;
+            // alert(window.a);
+        
+    } /*window.onload*/
+    </script>
+</head>
+<body>
+    <input type="button" id="p1" value="第一个">
+    <input type="button" id="p2" value="第二个">
+    <input type="button" id="p3" value="第三个">
+    <input type="button" id="p4" value="第四个">
+    <input type="button" id="p5" value="第五个">
+</body>
+</html>

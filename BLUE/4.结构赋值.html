@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解构赋值</title>
+    <script>
+        window.onload=()=>{
+            /*结构赋值的三点:
+                1. 左右两边结构必须一样
+                2. 右边必须是个合法的东西
+                3. 声明和赋值必须在一条语句里完成
+            */
+//1. 左右两边结构必须一样
+            
+            //传统写法
+            // let arr = [1,2,3];
+            // let a = arr[0];
+            // let b = arr[1];
+            // let c = arr[2];
+            // console.log(a,b,c);  //1,2,3,
+
+            //结构赋值 （左右两边必须一样）
+            // let [a,b,c]=[1,2,3];
+            // console.log(a,b,c);  //1,2,3
+
+            //结构赋值 （左右两边必须一样）
+            // let {a,b} = {a:1,b:2};
+            // console.log(a,b);  //1,2
+
+
+//2. 右边必须是个东西
+            // let {a,b} = [1,2]; //左右两边结构不一样
+            // console.log(a,b);  //undefined undefined
+
+            // let {a,b} = {1,2};  //右边不是个对象 //报错
+//稍复杂的解构赋值
+            // let [[q,w,e],{a,b},num,str] = [[1,2,3],{a:4,b:5},8,"hello"];
+            // console.log(q,w,e,a,b,num,str);  //1,2,3,4,5,8,"hello"
+// 稍复杂的结构赋值
+            // let [arr,obj,num,str] = [[1,2,3],{a:4,b:5},8,"hello"];
+            // console.log(arr,obj,num,str); //数组 对象 8 "hello"
+            
+
+
+//3. 声明和赋值必须在同一条语句里面完成
+            // let [a,b];
+            // [a,b] = [1,2];
+            // console.log(a,b);  //报错 //结构赋值两步操作必须在同一条语句里完成
+
+
+// 如果没有指定值,则为undefined
+            // let [a,b,c] = [1,2];
+            // console.log(a);
+            // console.log(b);
+            // console.log(c); //undefiend
+
+// 如果没有指定变量,则报错
+            // let [a,b] = [1,2,3];
+            // console.log(a);
+            // console.log(b);
+            // console.log(c); //报错 //c is not defined
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

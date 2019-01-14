@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>继承</title>
+    <script>
+    window.onload=()=>{
+        /*class的继承
+        1. extends 继承
+        写法: class A extends B{}
+        2. super表示父类的构造函数,用来新建父类的this对象。
+        */
+
+// extends        
+        // class A{};
+        // class B extends A{
+
+        // };
+        // var bb = new B();
+        // console.log(bb instanceof A); //true
+        // console.log(bb instanceof B); //true
+//继承后，子类的实例对象为两个类的实例,与ES5完全一致
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+
+//super 必须在子类的constructor方法中调用,否则新建实例的时候会报错
+            // class User{
+            //     constructor(x,y){
+            //         this.x = x;
+            //         this.y = y;
+            //     }
+            // }
+            // console.log(new User(12,13).x);
+            
+            // class VIP extends User{
+            //     constructor(x,y,level){
+            //         super(x,y);
+            //         this.level = level;
+            //     }
+            // }
+            // let v1 = new VIP(1,2,3);
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+
+//Object.getPrototypeOf()
+//该方法可用于在子类上检查继承与哪个父类
+                // console.log(Object.getPrototypeOf(VIP).name); //User
+//-------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------
+
+//super的两种使用场景
+//1. 在子类的构造器中必须使用，super()作为函数时,只能在构造函数中使用
+            // class C{
+            //     constructor(x,y){
+            //         this.x = x;
+            //         this.y = y;
+            //     }
+            //     show(){
+            //         console.log(this.x,this.y);  //记住: this!!!!!!!
+            //     }
+            // }
+            // new C(1,2).show();
+
+            // class D extends C{
+            //     constructor(x,y,z){
+            //         super(x,y);
+            //         this.z = z;
+            //     }
+            // }
+//-------------------------------------------------------------------------------------------
+//2. ES6规定,在子类普通方法中,通过super调用父类的方法时,方法内部的this指向当前的子类实例
+            // class Parent{
+            //     constructor(x,y){
+            //         this.x =1;
+            //     }
+            //     show(){
+            //         console.log(this.x);
+            //     }
+            // }
+            // class Son extends Parent{
+            //     constructor(x,y){
+            //         super(x,y)
+            //         this.x = 3;
+            //     }
+            // }
+            // var s1 = new Son();
+            // s1.show();  //3  //super()指向的是当前子类的实例对象
+//-------------------------------------------------------------------------------------------
+//3 
+        
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

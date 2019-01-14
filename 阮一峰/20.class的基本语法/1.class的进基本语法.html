@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class的基本语法</title>
+    <script>
+        // ------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
+        /*
+class基本语法的注意点:
+        (1)严格模式,类和模块的内部,默认就是严格模式。ES6实际上把整个语言都升级到了严格模式。
+        (2)不存在提升
+        如：
+            new foo();  //foo is not defined;
+            class foo{};
+        (3)name属性: name属性总返回跟在class后面的类名,如果是class表达式,则name属性为变量名称
+        如：
+            let Mc = class{};
+            Mc.name; //Mc
+
+            let Mc = class cc{};
+            Mc.name; //cc  //总是为class后面的类名
+
+            class Myclass{};
+            Myclass.name; //Myclass;
+        */
+        // ------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
+        /*
+class 静态方法
+        类相当于实例的原型,任何在类中定义的方法,都会被实例所继承。如果在一个方法前，加上static关键字,表示该方法
+        不会被继承。而是直接通过类来调用。这个就称之为“静态方法”。
+        如:
+        class Foo{
+            static show(){
+                alert(1);
+            }
+        }
+        Foo.show(); //1
+        var f1 = new Foo();
+        f1.show(); //报错 //f1.show is not defined
+        */
+// 2. 如果静态方法中包含this关键字，则这个关键字指向的是类,而不是实例。
+        /*
+        class Foo{
+            static show(){
+                this.brz();
+            }
+            static brz(){
+                alert('类的方法');
+            }
+            show(){
+                this.brz();
+            }
+            brz(){
+                alert('实例的方法');
+            }
+        }
+        */
+        // Foo.show();  //类的方法
+        // var f1= new Foo();
+        // f1.show(); //实例的方法
+
+// 3. 父类的静态方法可以被子类所继承
+        // class Foo{
+        //     static show(){
+        //         alert(2);
+        //     }
+        //     show(){
+        //         alert(1);
+        //     }
+        // }
+        // Foo.show(); //2
+        // class F2 extends Foo{};
+        // F2.show(); //2 
+        // var ff = new F2();
+        // ff.show(); //1 实例方法默认继承
+        // ------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
+// 静态属性
+//只有这一种方法,因为ES6规定,class内部只能有静态方法,没有静态属性。
+        // class MyClass {};
+        // MyClass.v = 1;
+        // console.log(MyClass.v)
+        // ------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
+//私有方法和私有属性指的是,只能在类的内部访问的方法或属性,外部不能访问。
+//现有的解决方案只能通过变通来实现。
+
+
+//new.target属性,该属性一般用在构造函数之中,返回new命令作用于的那个构造函数。如果构造函数不是通过new命令
+// 来调用的,那么new.target会返回undefined
+            class Foo{
+                constructor(name){
+                   if(new.target !== undefined){
+                       this.name = name;
+                   }else{
+                    throw new Error('必须使用 new 命令生成实例');
+                   }
+                }
+            }
+
+
+
+            
+
+        window.onload=()=>{
+            class User{
+                constructor(x,y){
+                    this.x = x;
+                    this.y = y;
+                }
+                showX(){
+                    alert(this.x);
+                }
+                showY(){
+                    alert(this.y);
+                }
+            }
+            var u1 = new User(1,2);
+            // u1.showX(); //1
+            // u1.showY(); //2
+
+//?????????????????存值函数和取值函数?????????????????
+            // class val{
+            //     get int(){
+            //         alert('getter');
+            //     }
+            //     set int(value){
+            //         alert('set '+this.value);
+            //     }
+            // }
+            // var u1 = new val();
+            // u1.int();
+            // u1.int("123");
+
+// class表达式
+                const MyClass = class me{
+                    showme(){
+                        alert(MyClass.name);
+                    }
+                }
+                // new MyClass().showme();  //me
+
+// 可以写出立即执行的类
+                
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reduce()平均数</title>
+    <script>
+        window.onload=()=>{
+            /*reduce方法
+            1. temp （相加的临时结果）
+            2. item （成员）
+            3. index （下标）
+            */
+            let arr = [1,50,20,29];
+            let result = arr.reduce(function (temp,item,index){
+                //当索引不为数组长度减一时(最后一个),接着算总和
+                if(index != arr.length-1){
+                    return temp+item;
+                }else{ //当索引为数组长度减一时(最后一个),算它们的平均数
+                    return (temp+item)/arr.length; 
+                }
+            });
+            alert(result);
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
